@@ -4,7 +4,7 @@ import com.instagram.model.User;
 
 import java.util.List;
 
-public interface Userservice {
+public interface UserService {
 
     boolean registerUser(User user);
 

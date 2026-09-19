@@ -1,15 +1,15 @@
 package com.instagram.controller;
 
 import com.instagram.model.User;
-import com.instagram.service.Userservice;
+import com.instagram.service.UserService;
 
 import java.util.List;
 
 public class UserController {
 
-    private Userservice userService;
+    private UserService userService;
 
-    public UserController(Userservice userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 

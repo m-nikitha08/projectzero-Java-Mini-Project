@@ -1,14 +1,14 @@
 package com.instagram.util;
 
 import com.instagram.model.User;
-import com.instagram.service.Userservice;
+import com.instagram.service.UserService;
 import com.instagram.service.UserServiceImpl;
 
 public class UserTest {
 
     public static void main(String[] args) {
 
-        Userservice userService = new UserServiceImpl();
+        UserService userService = new UserServiceImpl();
 
         User user = new User();
 

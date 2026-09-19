@@ -1,17 +1,17 @@
 package com.instagram.service;
 
 import com.instagram.dao.UserDAO;
-import com.instagram.dao.UserDAOImp;
+import com.instagram.dao.UserDAOImpl;
 import com.instagram.model.User;
 
 import java.util.List;
 
-public class UserServiceImpl implements Userservice {
+public class UserServiceImpl implements UserService {
 
     private UserDAO userDAO;
 
     public UserServiceImpl() {
-        this.userDAO = new UserDAOImp();
+        this.userDAO = new UserDAOImpl();
     }
 
     @Override

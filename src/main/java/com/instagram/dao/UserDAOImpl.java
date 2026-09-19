@@ -9,7 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class UserDAOImp implements UserDAO {
+public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean addUser(User user) {

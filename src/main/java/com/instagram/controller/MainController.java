@@ -13,7 +13,7 @@ public class MainController {
     public static void main(String[] args) {
 
         // Create Service objects
-        Userservice userService = new UserServiceImpl();
+        UserService userService = new UserServiceImpl();
         ProfileService profileService = new ProfileServiceImpl();
         PostService postService = new PostServiceImpl();
         CommentService commentService = new CommentServiceImpl();
