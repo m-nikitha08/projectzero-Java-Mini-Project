@@ -1,22 +1,22 @@
 package com.instagram.dao;
 
-import com.instagram.model.User;
+import com.instagram.model.Users;
 
 import java.util.List;
 
 public interface UserDAO {
 
-    boolean addUser(User user);
+    boolean addUser(Users users);
 
-    User getUserById(int userId);
+    Users getUserById(int userId);
 
-    User getUserByUsername(String username);
+    Users getUserByUsername(String username);
 
-    User getUserByEmail(String email);
+    Users getUserByEmail(String email);
 
-    List<User> getAllUsers();
+    List<Users> getAllUsers();
 
-    boolean updateUser(User user);
+    boolean updateUser(Users users);
 
     boolean deleteUser(int userId);
 }

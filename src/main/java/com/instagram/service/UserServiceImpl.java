@@ -2,7 +2,7 @@ package com.instagram.service;
 
 import com.instagram.dao.UserDAO;
 import com.instagram.dao.UserDAOImpl;
-import com.instagram.model.User;
+import com.instagram.model.Users;
 
 import java.util.List;
 
@@ -15,36 +15,36 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean registerUser(User user) {
+    public boolean registerUser(Users users) {
         // TODO: Add validation
-        return userDAO.addUser(user);
+        return userDAO.addUser(users);
     }
 
     @Override
-    public User login(String username, String password) {
+    public Users login(String username, String password) {
         // TODO: Implement login validation
         return null;
     }
 
     @Override
-    public User getUserById(int userId) {
+    public Users getUserById(int userId) {
         return userDAO.getUserById(userId);
     }
 
     @Override
-    public User getUserByUsername(String username) {
+    public Users getUserByUsername(String username) {
         return userDAO.getUserByUsername(username);
     }
 
     @Override
-    public List<User> getAllUsers() {
+    public List<Users> getAllUsers() {
         return userDAO.getAllUsers();
     }
 
     @Override
-    public boolean updateUser(User user) {
+    public boolean updateUser(Users users) {
         // TODO: Add validation
-        return userDAO.updateUser(user);
+        return userDAO.updateUser(users);
     }
 
     @Override

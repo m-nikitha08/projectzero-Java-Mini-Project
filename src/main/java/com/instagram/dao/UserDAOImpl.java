@@ -1,6 +1,6 @@
 package com.instagram.dao;
 
-import com.instagram.model.User;
+import com.instagram.model.Users;
 
 import java.util.List;
 import com.instagram.util.JDBCUtil;
@@ -12,64 +12,59 @@ import java.sql.SQLException;
 public class UserDAOImpl implements UserDAO {
 
     @Override
-    public boolean addUser(User user) {
+    public boolean addUser(Users users) {
 
-        String sql = "INSERT INTO users " +
-                "(username, email, password_hash, status, role) " +
-                "VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)";
 
         try (Connection connection = JDBCUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            statement.setString(1, user.getUsername());
-            statement.setString(2, user.getEmail());
-            statement.setString(3, user.getPasswordHash());
-            statement.setString(4, user.getStatus());
-            statement.setString(5, user.getRole());
+            statement.setString(1, users.getUsername());
+            statement.setString(2, users.getEmail());
+            statement.setString(3, users.getPasswordHash());
+           // statement.setString(4, user.getStatus());
+            //statement.setString(5, user.getRole());
 
             int rows = statement.executeUpdate();
 
             return rows > 0;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            System.out.println("Unable to add user: " + e.getMessage());
             return false;
         }
     }
 
     @Override
-    public User getUserById(int userId) {
-        // TODO: Implement SELECT query by ID
+    public Users getUserById(int userId) {
         return null;
     }
 
     @Override
-    public User getUserByUsername(String username) {
-        // TODO: Implement SELECT query by username
+    public Users getUserByUsername(String username) {
         return null;
     }
 
     @Override
-    public User getUserByEmail(String email) {
-        // TODO: Implement SELECT query by email
+    public Users getUserByEmail(String email) {
         return null;
     }
 
     @Override
-    public List<User> getAllUsers() {
-        // TODO: Implement SELECT ALL query
-        return null;
+    public List<Users> getAllUsers() {
+        return List.of();
     }
 
     @Override
-    public boolean updateUser(User user) {
-        // TODO: Implement UPDATE query
+    public boolean updateUser(Users users) {
         return false;
     }
 
     @Override
     public boolean deleteUser(int userId) {
-        // TODO: Implement DELETE query
         return false;
     }
+
+
 }

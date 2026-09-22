@@ -1,22 +1,22 @@
 package com.instagram.service;
 
-import com.instagram.model.User;
+import com.instagram.model.Users;
 
 import java.util.List;
 
 public interface UserService {
 
-    boolean registerUser(User user);
+    boolean registerUser(Users users);
 
-    User login(String username, String password);
+    Users login(String username, String password);
 
-    User getUserById(int userId);
+    Users getUserById(int userId);
 
-    User getUserByUsername(String username);
+    Users getUserByUsername(String username);
 
-    List<User> getAllUsers();
+    List<Users> getAllUsers();
 
-    boolean updateUser(User user);
+    boolean updateUser(Users users);
 
     boolean deactivateUser(int userId);
 }

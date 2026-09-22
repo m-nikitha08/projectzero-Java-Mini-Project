@@ -2,7 +2,7 @@ package com.instagram.model;
 
 import java.time.LocalDateTime;
 
-public class User {
+public class Users {
 
     private int userId;
     private String username;
@@ -14,24 +14,30 @@ public class User {
     private LocalDateTime updatedAt;
 
     // No-argument constructor
-    public User() {
+    public Users() {
     }
 
     // Parameterized constructor
-    public User(int userId, String username, String email, String passwordHash,
-                String status, String role,
-                LocalDateTime createdAt, LocalDateTime updatedAt) {
+//    public User(int userId, String username, String email, String passwordHash,
+//                String status, String role,
+//                LocalDateTime createdAt, LocalDateTime updatedAt) {
+//
+//        this.userId = userId;
+//        this.username = username;
+//        this.email = email;
+//        this.passwordHash = passwordHash;
+//        this.status = status;
+//        this.role = role;
+//        this.createdAt = createdAt;
+//        this.updatedAt = updatedAt;
+//    }
 
-        this.userId = userId;
-        this.username = username;
+
+    public Users(String name, String email, String password) {
+        this.username = name;
         this.email = email;
-        this.passwordHash = passwordHash;
-        this.status = status;
-        this.role = role;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.passwordHash = password;
     }
-
     // Getters and Setters
 
     public int getUserId() {
