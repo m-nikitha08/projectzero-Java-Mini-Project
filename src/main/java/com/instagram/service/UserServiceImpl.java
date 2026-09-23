@@ -22,12 +22,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Users login(String username, String password) {
-        // TODO: Implement login validation
-        return null;
+        return userDAO.login(username, password);
     }
 
     @Override
     public Users getUserById(int userId) {
+
         return userDAO.getUserById(userId);
     }
 
@@ -47,9 +47,10 @@ public class UserServiceImpl implements UserService {
         return userDAO.updateUser(users);
     }
 
-    @Override
-    public boolean deactivateUser(int userId) {
-        // TODO: Implement deactivation
-        return false;
-    }
+//    @Override
+      public boolean deleteUser(int userId) {
+
+        return userDAO.deleteUser(userId);
+        }
+
 }
