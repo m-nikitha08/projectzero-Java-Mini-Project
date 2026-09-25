@@ -6,28 +6,27 @@ public class Profile {
 
     private int profileId;
     private int userId;
-    private String fullName;
+    private String profileName;
     private String bio;
     private String phone;
     private String profileImageUrl;
-    private LocalDateTime updatedAt;
+    //private LocalDateTime updatedAt;
 
     // No-argument constructor
     public Profile() {
     }
 
     // Parameterized constructor
-    public Profile(int profileId, int userId, String fullName, String bio,
-                   String phone, String profileImageUrl,
-                   LocalDateTime updatedAt) {
+    public Profile(int profileId, int userId, String profileName, String bio,
+                   String phone, String profileImageUrl) {
 
         this.profileId = profileId;
         this.userId = userId;
-        this.fullName = fullName;
+        this.profileName = profileName;
         this.bio = bio;
         this.phone = phone;
         this.profileImageUrl = profileImageUrl;
-        this.updatedAt = updatedAt;
+        //this.updatedAt = updatedAt;
     }
 
     // Getters and Setters
@@ -48,12 +47,12 @@ public class Profile {
         this.userId = userId;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getProfileName() {
+        return profileName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setProfileName(String profileName) {
+        this.profileName = profileName;
     }
 
     public String getBio() {
@@ -80,11 +79,24 @@ public class Profile {
         this.profileImageUrl = profileImageUrl;
     }
 
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
+//    public LocalDateTime getUpdatedAt() {
+//        return updatedAt;
 
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
+    @Override
+    public String toString() {
+        return "Profile{" +
+                "profileId=" + profileId +
+                ", userId=" + userId +
+                ", profileName='" + profileName + '\'' +
+                ", bio='" + bio + '\'' +
+                ", phone='" + phone + '\'' +
+                ", profileImageUrl='" + profileImageUrl + '\'' +
+                '}';
     }
+//    }
+//
+//    public void setUpdatedAt(LocalDateTime updatedAt) {
+//        this.updatedAt = updatedAt;
+//    }
+
 }

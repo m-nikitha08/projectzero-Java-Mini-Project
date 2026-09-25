@@ -2,6 +2,8 @@ package com.instagram.service;
 
 import com.instagram.model.Profile;
 
+import java.util.List;
+
 public interface ProfileService {
 
     boolean createProfile(Profile profile);
@@ -13,4 +15,6 @@ public interface ProfileService {
     boolean updateProfile(Profile profile);
 
     boolean deleteProfile(int profileId);
+
+    List<Profile> getAllProfiles();
 }

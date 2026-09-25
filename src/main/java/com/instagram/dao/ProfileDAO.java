@@ -2,9 +2,11 @@ package com.instagram.dao;
 
 import com.instagram.model.Profile;
 
+import java.util.List;
+
 public interface ProfileDAO {
 
-    boolean addProfile(Profile profile);
+    boolean createProfile(Profile profile);
 
     Profile getProfileById(int profileId);
 
@@ -13,4 +15,6 @@ public interface ProfileDAO {
     boolean updateProfile(Profile profile);
 
     boolean deleteProfile(int profileId);
+
+    List<Profile> getAllProfiles();
 }

@@ -137,7 +137,9 @@ class UserServiceImplTest {
         assertEquals("Nikitha_M", user.getUsername());
         //assertEquals("Nikitha_M@gmail.com", user.getEmail());
 
-        System.out.println("User logged in successfully");
+        System.out.println("User logged in successfully "+user.getUserId() + " " +
+                user.getUsername() + " " +
+                user.getEmail());
     }
 
     @Test
