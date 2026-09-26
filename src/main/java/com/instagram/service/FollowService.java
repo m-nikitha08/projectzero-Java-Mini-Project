@@ -1,19 +1,20 @@
 package com.instagram.service;
 
 import com.instagram.model.Follow;
+
 import java.util.List;
 
 public interface FollowService {
 
-    boolean followUser(Follow follow);
+    boolean addFollow(Follow follow);
 
-    boolean unfollowUser(int followerId, int followingId);
+    boolean removeFollow(int followerId, int followingId);
 
     boolean isFollowing(int followerId, int followingId);
 
-    List<Follow> getFollowers(int userId);
+    List<Follow> getFollowers(int followingId);
 
-    List<Follow> getFollowing(int userId);
+    List<Follow> getFollowing(int followerId);
 
     int getFollowerCount(int userId);
 

@@ -14,32 +14,26 @@ public class LikeController {
     }
 
     public boolean addLike(Like like) {
-        // TODO: Call LikeService
-        return false;
+        return likeService.addLike(like);
     }
 
     public boolean removeLike(int userId, int postId) {
-        // TODO: Call LikeService
-        return false;
+        return likeService.removeLike(userId, postId);
     }
 
-    public boolean hasUserLikedPost(int userId, int postId) {
-        // TODO: Call LikeService
-        return false;
+    public boolean isLiked(int userId, int postId) {
+        return likeService.isLiked(userId, postId);
     }
 
-    public int getLikeCountByPostId(int postId) {
-        // TODO: Call LikeService
-        return 0;
+    public int getLikeCount(int postId) {
+        return likeService.getLikeCount(postId);
     }
 
     public List<Like> getLikesByPostId(int postId) {
-        // TODO: Call LikeService
-        return null;
+        return likeService.getLikesByPostId(postId);
     }
 
     public List<Like> getLikesByUserId(int userId) {
-        // TODO: Call LikeService
-        return null;
+        return likeService.getLikesByUserId(userId);
     }
 }

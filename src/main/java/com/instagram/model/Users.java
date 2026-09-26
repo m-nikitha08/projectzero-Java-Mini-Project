@@ -33,10 +33,21 @@ public class Users {
 //    }
 
 
+    public Users(int userId, String username, String email, String passwordHash,
+                 String role, String status) {
+        this.userId = userId;
+        this.username = username;
+        this.email = email;
+        this.passwordHash = passwordHash;
+        this.role = role;
+        this.status = status;
+    }
+
     public Users(String name, String email, String password) {
         this.username = name;
         this.email = email;
         this.passwordHash = password;
+
     }
     // Getters and Setters
 
@@ -88,6 +99,7 @@ public class Users {
         this.role = role;
     }
 
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -102,5 +114,18 @@ public class Users {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", passwordHash='" + passwordHash + '\'' +
+                ", role='" + role + '\'' +
+                ", status='" + status + '\'' +
+                '}';
     }
 }

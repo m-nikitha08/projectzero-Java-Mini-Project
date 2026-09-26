@@ -1,6 +1,6 @@
 package com.instagram.controller;
 
-import com.instagram.model.User;
+import com.instagram.model.Users;
 import com.instagram.service.UserService;
 
 import java.util.List;
@@ -13,38 +13,33 @@ public class UserController {
         this.userService = userService;
     }
 
-    public boolean registerUser(User user) {
-        // TODO: Call UserService
-        return false;
+    public boolean registerUser(Users users) {
+        return userService.registerUser(users);
     }
 
-    public User login(String username, String password) {
-        // TODO: Call UserService
-        return null;
+    public Users login(String username, String password) {
+        return userService.login(username, password);
     }
 
-    public User getUserById(int userId) {
-        // TODO: Call UserService
-        return null;
+    public Users getUserById(int userId) {
+        // UserService currently does not have getUserById()
+        return userService.getUserById(userId);
     }
 
-    public User getUserByUsername(String username) {
-        // TODO: Call UserService
-        return null;
+    public Users getUserByUsername(String username) {
+        return userService.getUserByUsername(username);
     }
 
-    public List<User> getAllUsers() {
-        // TODO: Call UserService
-        return null;
+    public List<Users> getAllUsers() {
+        return userService.getAllUsers();
     }
 
-    public boolean updateUser(User user) {
-        // TODO: Call UserService
-        return false;
+    public boolean updateUser(Users users) {
+        return userService.updateUser(users);
     }
 
     public boolean deactivateUser(int userId) {
-        // TODO: Call UserService
+        // UserService currently does not have a deactivateUser() method
         return false;
     }
 }

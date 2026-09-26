@@ -13,33 +13,27 @@ public class PostController {
         this.postService = postService;
     }
 
-    public boolean createPost(Post post) {
-        // TODO: Call PostService
-        return false;
+    public boolean addPost(Post post) {
+        return postService.createPost(post);
     }
 
     public Post getPostById(int postId) {
-        // TODO: Call PostService
-        return null;
+        return postService.getPostById(postId);
     }
 
     public List<Post> getPostsByUserId(int userId) {
-        // TODO: Call PostService
-        return null;
+        return postService.getPostsByUserId(userId);
     }
 
     public List<Post> getAllPosts() {
-        // TODO: Call PostService
-        return null;
+        return postService.getAllPosts();
     }
 
     public boolean updatePost(Post post) {
-        // TODO: Call PostService
-        return false;
+        return postService.updatePost(post);
     }
 
     public boolean deletePost(int postId) {
-        // TODO: Call PostService
-        return false;
+        return postService.deletePost(postId);
     }
 }

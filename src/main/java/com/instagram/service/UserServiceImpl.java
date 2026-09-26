@@ -16,7 +16,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean registerUser(Users users) {
-        // TODO: Add validation
+        if (users == null) {
+            return false;
+        }
+
+        if (users.getUsername() == null || users.getUsername().trim().isEmpty()) {
+            return false;
+        }
+
+        if (users.getEmail() == null || users.getEmail().trim().isEmpty()) {
+            return false;
+        }
+
+        if (users.getPasswordHash() == null || users.getPasswordHash().trim().isEmpty()) {
+            return false;
+        }
         return userDAO.addUser(users);
     }
 

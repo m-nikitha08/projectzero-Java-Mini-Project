@@ -13,38 +13,31 @@ public class FollowController {
         this.followService = followService;
     }
 
-    public boolean followUser(Follow follow) {
-        // TODO: Call FollowService
-        return false;
+    public boolean addFollow(Follow follow) {
+        return followService.addFollow(follow);
     }
 
-    public boolean unfollowUser(int followerId, int followingId) {
-        // TODO: Call FollowService
-        return false;
+    public boolean removeFollow(int followerId, int followingId) {
+        return followService.removeFollow(followerId, followingId);
     }
 
     public boolean isFollowing(int followerId, int followingId) {
-        // TODO: Call FollowService
-        return false;
+        return followService.isFollowing(followerId, followingId);
     }
 
-    public List<Follow> getFollowers(int userId) {
-        // TODO: Call FollowService
-        return null;
+    public List<Follow> getFollowers(int followingId) {
+        return followService.getFollowers(followingId);
     }
 
-    public List<Follow> getFollowing(int userId) {
-        // TODO: Call FollowService
-        return null;
+    public List<Follow> getFollowing(int followerId) {
+        return followService.getFollowing(followerId);
     }
 
     public int getFollowerCount(int userId) {
-        // TODO: Call FollowService
-        return 0;
+        return followService.getFollowerCount(userId);
     }
 
     public int getFollowingCount(int userId) {
-        // TODO: Call FollowService
-        return 0;
+        return followService.getFollowingCount(userId);
     }
 }

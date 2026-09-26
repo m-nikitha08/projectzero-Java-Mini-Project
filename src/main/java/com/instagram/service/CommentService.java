@@ -11,7 +11,7 @@ public interface CommentService {
 
     List<Comment> getCommentsByPostId(int postId);
 
-    List<Comment> getCommentsByUserId(int userId);
+    List<Comment> getAllComments();
 
     boolean updateComment(Comment comment);
 

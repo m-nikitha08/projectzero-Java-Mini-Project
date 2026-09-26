@@ -12,7 +12,7 @@ public interface CommentDAO {
 
     List<Comment> getCommentsByPostId(int postId);
 
-    List<Comment> getCommentsByUserId(int userId);
+    List<Comment> getAllComments();
 
     boolean updateComment(Comment comment);
 

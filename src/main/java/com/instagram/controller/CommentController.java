@@ -14,32 +14,30 @@ public class CommentController {
     }
 
     public boolean addComment(Comment comment) {
-        // TODO: Call CommentService
-        return false;
+        return commentService.addComment(comment);
     }
 
     public Comment getCommentById(int commentId) {
-        // TODO: Call CommentService
-        return null;
+        return commentService.getCommentById(commentId);
     }
 
     public List<Comment> getCommentsByPostId(int postId) {
-        // TODO: Call CommentService
-        return null;
+        return commentService.getCommentsByPostId(postId);
     }
 
-    public List<Comment> getCommentsByUserId(int userId) {
-        // TODO: Call CommentService
-        return null;
-    }
+   /* public List<Comment> getCommentsByUserId(int userId) {
+        return commentService.getCommentsByUserId(userId);
+    }*/
+
+    /*public List<Comment> getReplies(int parentCommentId) {
+        return commentService.getReplies(parentCommentId);
+    }*/
 
     public boolean updateComment(Comment comment) {
-        // TODO: Call CommentService
-        return false;
+        return commentService.updateComment(comment);
     }
 
     public boolean deleteComment(int commentId) {
-        // TODO: Call CommentService
-        return false;
+        return commentService.deleteComment(commentId);
     }
 }

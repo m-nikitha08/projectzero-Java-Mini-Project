@@ -1,7 +1,5 @@
 package com.instagram.model;
 
-import java.time.LocalDateTime;
-
 public class Comment {
 
     private int commentId;
@@ -9,25 +7,18 @@ public class Comment {
     private int postId;
     private Integer parentCommentId;
     private String commentText;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
 
-    // No-argument constructor
     public Comment() {
     }
 
-    // Parameterized constructor
     public Comment(int commentId, int userId, int postId,
-                   Integer parentCommentId, String commentText,
-                   LocalDateTime createdAt, LocalDateTime updatedAt) {
+                   Integer parentCommentId, String commentText) {
 
         this.commentId = commentId;
         this.userId = userId;
         this.postId = postId;
         this.parentCommentId = parentCommentId;
         this.commentText = commentText;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
     }
 
     public int getCommentId() {
@@ -70,19 +61,14 @@ public class Comment {
         this.commentText = commentText;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "commentId=" + commentId +
+                ", userId=" + userId +
+                ", postId=" + postId +
+                ", parentCommentId=" + parentCommentId +
+                ", commentText='" + commentText + '\'' +
+                '}';
     }
 }

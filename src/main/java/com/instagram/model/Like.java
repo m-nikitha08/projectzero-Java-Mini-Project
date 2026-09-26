@@ -1,29 +1,19 @@
 package com.instagram.model;
 
-import java.time.LocalDateTime;
-
 public class Like {
 
     private int likeId;
     private int userId;
     private int postId;
-    private LocalDateTime createdAt;
 
-    // No-argument constructor
     public Like() {
     }
 
-    // Parameterized constructor
-    public Like(int likeId, int userId, int postId,
-                LocalDateTime createdAt) {
-
+    public Like(int likeId, int userId, int postId) {
         this.likeId = likeId;
         this.userId = userId;
         this.postId = postId;
-        this.createdAt = createdAt;
     }
-
-    // Getters and Setters
 
     public int getLikeId() {
         return likeId;
@@ -49,11 +39,12 @@ public class Like {
         this.postId = postId;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    @Override
+    public String toString() {
+        return "Like{" +
+                "likeId=" + likeId +
+                ", userId=" + userId +
+                ", postId=" + postId +
+                '}';
     }
 }

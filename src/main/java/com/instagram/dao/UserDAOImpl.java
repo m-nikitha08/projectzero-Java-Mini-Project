@@ -16,7 +16,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public boolean addUser(Users users) {
 
-        String sql = "INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO dbo.users (username, email, password_hash, role, status) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection connection = JDBCUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -24,8 +24,8 @@ public class UserDAOImpl implements UserDAO {
             statement.setString(1, users.getUsername());
             statement.setString(2, users.getEmail());
             statement.setString(3, users.getPasswordHash());
-           // statement.setString(4, user.getStatus());
-            //statement.setString(5, user.getRole());
+            statement.setString(4, users.getRole() == null ? "USER" : users.getRole());
+            statement.setString(5, users.getStatus() == null ? "ACTIVE" : users.getStatus());
 
             int rows = statement.executeUpdate();
 
@@ -58,6 +58,8 @@ public class UserDAOImpl implements UserDAO {
                 users.setUsername(resultSet.getString("username"));
                 users.setEmail(resultSet.getString("email"));
                 users.setPasswordHash(resultSet.getString("password_hash"));
+                users.setRole(resultSet.getString("role"));
+                users.setStatus(resultSet.getString("status"));
 
                 return users;
             }
@@ -120,7 +122,9 @@ public class UserDAOImpl implements UserDAO {
                 user.setUserId(resultSet.getInt("user_id"));
                 user.setUsername(resultSet.getString("username"));
                 user.setEmail(resultSet.getString("email"));
-                //user.setPasswordHash(resultSet.getString("password_hash"));
+                user.setPasswordHash(resultSet.getString("password_hash"));
+                user.setRole(resultSet.getString("role"));
+                user.setStatus(resultSet.getString("status"));
 
 
                 return user;
@@ -157,6 +161,8 @@ public class UserDAOImpl implements UserDAO {
                 users.setUsername(resultSet.getString("username"));
                 users.setEmail(resultSet.getString("email"));
                 users.setPasswordHash(resultSet.getString("password_hash"));
+                users.setRole(resultSet.getString("role"));
+                users.setStatus(resultSet.getString("status"));
 
                 usersList.add(users);
             }
@@ -181,6 +187,7 @@ public class UserDAOImpl implements UserDAO {
             statement.setString(2, users.getEmail());
             statement.setString(3, users.getPasswordHash());
             statement.setInt(4, users.getUserId());
+
 
             int updatedRows = statement.executeUpdate();
 

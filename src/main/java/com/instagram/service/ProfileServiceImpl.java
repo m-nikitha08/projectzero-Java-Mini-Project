@@ -18,6 +18,18 @@ public class ProfileServiceImpl implements ProfileService {
     @Override
     public boolean createProfile(Profile profile) {
         // TODO: Add validation and call ProfileDAO
+        if (profile == null) {
+            return false;
+        }
+
+        if (profile.getUserId() <= 0) {
+            return false;
+        }
+
+        if (profile.getProfileName() == null ||
+                profile.getProfileName().trim().isEmpty()) {
+            return false;
+        }
         return profileDAO.createProfile(profile);
     }
 
@@ -30,18 +42,44 @@ public class ProfileServiceImpl implements ProfileService {
     @Override
     public Profile getProfileByUserId(int userId) {
         // TODO: Call ProfileDAO
+
+        if (userId <= 0) {
+            return null;
+        }
         return profileDAO.getProfileByUserId(userId);
     }
 
     @Override
     public boolean updateProfile(Profile profile) {
         // TODO: Add validation and call ProfileDAO
+
+        if (profile == null) {
+            return false;
+        }
+
+        if (profile.getProfileId() <= 0) {
+            return false;
+        }
+
+        if (profile.getUserId() <= 0) {
+            return false;
+        }
+
+        if (profile.getProfileName() == null ||
+                profile.getProfileName().trim().isEmpty()) {
+            return false;
+        }
+
         return profileDAO.updateProfile(profile);
     }
 
     @Override
     public boolean deleteProfile(int profileId) {
         // TODO: Call ProfileDAO
+        if (profileId <= 0) {
+            return false;
+        }
+
         return profileDAO.deleteProfile(profileId);
     }
 

@@ -10,9 +10,9 @@ public interface LikeDAO {
 
     boolean removeLike(int userId, int postId);
 
-    boolean hasUserLikedPost(int userId, int postId);
+    boolean isLiked(int userId, int postId);
 
-    int getLikeCountByPostId(int postId);
+    int getLikeCount(int postId);
 
     List<Like> getLikesByPostId(int postId);
 

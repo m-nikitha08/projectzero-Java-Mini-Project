@@ -12,9 +12,9 @@ public interface FollowDAO {
 
     boolean isFollowing(int followerId, int followingId);
 
-    List<Follow> getFollowers(int userId);
+    List<Follow> getFollowers(int followingId);
 
-    List<Follow> getFollowing(int userId);
+    List<Follow> getFollowing(int followerId);
 
     int getFollowerCount(int userId);
 

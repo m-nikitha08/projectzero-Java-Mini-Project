@@ -1,43 +1,46 @@
 package com.instagram.service;
 
+import com.instagram.dao.LikeDAO;
+import com.instagram.dao.LikeDAOImpl;
 import com.instagram.model.Like;
+
 import java.util.List;
 
 public class LikeServiceImpl implements LikeService {
 
+    private final LikeDAO likeDAO;
+
+    public LikeServiceImpl() {
+        likeDAO = new LikeDAOImpl();
+    }
+
     @Override
     public boolean addLike(Like like) {
-        // TODO: Add validation and call LikeDAO
-        return false;
+        return likeDAO.addLike(like);
     }
 
     @Override
     public boolean removeLike(int userId, int postId) {
-        // TODO: Call LikeDAO
-        return false;
+        return likeDAO.removeLike(userId, postId);
     }
 
     @Override
-    public boolean hasUserLikedPost(int userId, int postId) {
-        // TODO: Call LikeDAO
-        return false;
+    public boolean isLiked(int userId, int postId) {
+        return likeDAO.isLiked(userId, postId);
     }
 
     @Override
-    public int getLikeCountByPostId(int postId) {
-        // TODO: Call LikeDAO
-        return 0;
+    public int getLikeCount(int postId) {
+        return likeDAO.getLikeCount(postId);
     }
 
     @Override
     public List<Like> getLikesByPostId(int postId) {
-        // TODO: Call LikeDAO
-        return null;
+        return likeDAO.getLikesByPostId(postId);
     }
 
     @Override
     public List<Like> getLikesByUserId(int userId) {
-        // TODO: Call LikeDAO
-        return null;
+        return likeDAO.getLikesByUserId(userId);
     }
 }
