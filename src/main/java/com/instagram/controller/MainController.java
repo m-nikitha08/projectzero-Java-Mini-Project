@@ -4,6 +4,7 @@ import com.instagram.model.Follow;
 import com.instagram.model.Users;
 import com.instagram.service.*;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class MainController {
@@ -181,7 +182,9 @@ public class MainController {
 
             System.out.println("\n===== Admin Menu =====");
             System.out.println("1. View Dashboard");
-            System.out.println("2. Logout");
+            System.out.println("2. View All Users");
+            System.out.println("3. Search User");
+            System.out.println("4. Logout");
 
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
@@ -193,6 +196,8 @@ public class MainController {
 
                     int totalUsers =
                             adminController.getTotalUsers();
+                    int totalPosts =
+                            adminController.getTotalPosts();
 
                    // int totalFollowers =
                      //       adminController.getTotalFollowers();
@@ -210,7 +215,7 @@ public class MainController {
                     );
 
                     System.out.println(
-                            "║               ADMIN DASHBOARD               ║"
+                            "║               ADMIN DASHBOARD                ║"
                     );
 
                     System.out.println(
@@ -227,7 +232,15 @@ public class MainController {
                                     String.valueOf(totalUsers),
                                     20
                             )
-                                    + "║"
+                                    + "     ║"
+                    );
+                    System.out.println(
+                            "║  Total Posts      : "
+                                    + fitText(
+                                    String.valueOf(totalUsers),
+                                    20
+                            )
+                                    + "     ║"
                     );
 
 //                    System.out.println(
@@ -248,14 +261,14 @@ public class MainController {
 //                                    + "║"
 //                    );
 
-                    System.out.println(
-                            "║  Total Likes      : "
-                                    + fitText(
-                                    String.valueOf(totalLikes),
-                                    20
-                            )
-                                    + "║"
-                    );
+//                    System.out.println(
+//                            "║  Total Likes      : "
+//                                    + fitText(
+//                                    String.valueOf(totalLikes),
+//                                    20
+//                            )
+//                                    + "║
+//                    );
 
                     System.out.println(
                             "║                                              ║"
@@ -268,6 +281,76 @@ public class MainController {
                     break;
 
                 case 2:
+
+                    List<Users> users = adminController.getAllUsers();
+
+                    System.out.println();
+                    System.out.println("╔══════════════════════════════════════════════════════════════════════════════╗");
+                    System.out.println("║                     ALL USERS                                                ║");
+                    System.out.println("╠══════════════════════════════════════════════════════════════════════════════╣");
+
+                    if (users.isEmpty()) {
+
+                        System.out.println("║  No users found.                                           ║");
+
+                    } else {
+
+                        for (Users user : users) {
+
+                            System.out.println(
+                                    "║  ID: " + fitText(String.valueOf(user.getUserId()), 5)
+                                            + " Username: "
+                                            + fitText(user.getUsername(), 20)
+                                            + " Role: "
+                                            + fitText(user.getRole(), 8)
+                                            + " Status: "
+                                            + fitText(user.getStatus(), 10)
+                                            + "  ║"
+                            );
+                        }
+                    }
+
+                    System.out.println("╚══════════════════════════════════════════════════════════════════════════════╝");
+
+                    break;
+
+                case 3:
+
+                    System.out.print("Enter username to search: ");
+                    String searchUsername = scanner.nextLine();
+
+                    List<Users> searchResults =
+                            adminController.searchUsers(searchUsername);
+
+                    System.out.println();
+                    System.out.println("╔════════════════════════════════════════════════════╗");
+                    System.out.println("║                   SEARCH RESULTS                  ║");
+                    System.out.println("╠════════════════════════════════════════════════════╣");
+
+                    if (searchResults.isEmpty()) {
+
+                        System.out.println("║  No users found.                                   ║");
+
+                    } else {
+
+                        for (Users user : searchResults) {
+
+                            System.out.println(
+                                    "║  ID: " +
+                                            fitText(String.valueOf(user.getUserId()), 5) +
+                                            " Username: " +
+                                            fitText(user.getUsername(), 20) +
+                                            " Status: " +
+                                            fitText(user.getStatus(), 10) +
+                                            "║"
+                            );
+                        }
+                    }
+
+                    System.out.println("╚════════════════════════════════════════════════════╝");
+
+                    break;
+                case 4:
 
                     System.out.println(
                             "Admin logged out successfully."
@@ -313,7 +396,9 @@ public class MainController {
             System.out.println("15. Unfollow User");
             System.out.println("16. View Followers");
             System.out.println("17. View Following");
-            System.out.println("18. Logout");
+            System.out.println("18.  Search User");
+            System.out.println("19.  View All Posts");
+            System.out.println("20. Logout");
 
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
@@ -380,9 +465,9 @@ public class MainController {
                     System.out.println("╠══════════════════════════════════════════════╣");
 
                     System.out.println("║  @" +
-                            fitText(loggedInUser.getUsername(), 39) + "          ║");
+                            fitText(loggedInUser.getUsername(), 39) + "║");
 
-                    System.out.println("║                                               ║");
+                    System.out.println("║                                              ║");
 
                     System.out.println("║  User ID: " +
                             fitText(String.valueOf(loggedInUser.getUserId()), 32) + "   ║");
@@ -390,13 +475,13 @@ public class MainController {
                     if (profiles != null) {
 
                         System.out.println("║  Name: " +
-                                fitText(profiles.getProfileName(), 35) + "               ║");
+                                fitText(profiles.getProfileName(), 35) + "     ║");
 
                         System.out.println("║  Bio: " +
-                                fitText(profiles.getBio(), 36) + "                       ║");
+                                fitText(profiles.getBio(), 36) + "        ║");
 
                         System.out.println("║  Image: " +
-                                fitText(profiles.getProfileImageUrl(), 33) + "           ║");
+                                fitText(profiles.getProfileImageUrl(), 33) + "   ║");
 
                     } else {
 
@@ -424,23 +509,66 @@ public class MainController {
 
                         for (com.instagram.model.Post post : posts) {
 
+                            int likeCount =
+                                    likeController.getLikeCount(
+                                            post.getPostId()
+                                    );
+
+                            java.util.List<com.instagram.model.Comment> comments =
+                                    commentController.getCommentsByPostId(
+                                            post.getPostId()
+                                    );
+
                             System.out.println("║                                              ║");
 
                             System.out.println("║  Post #" +
-                                    fitText(String.valueOf(post.getPostId()), 34) + "║");
+                                    fitText(
+                                            String.valueOf(post.getPostId()),
+                                            34
+                                    ) + "║");
 
                             System.out.println("║  Caption: " +
                                     fitText(post.getCaption(), 31) + "║");
 
                             System.out.println("║  Image: " +
                                     fitText(post.getImageUrl(), 33) + "║");
+
+                            System.out.println("║  Likes: " +
+                                    fitText(String.valueOf(likeCount), 34) + "║");
+
+                            System.out.println("║                                              ║");
+
+                            System.out.println("║  Comments:                                   ║");
+
+                            if (comments.isEmpty()) {
+
+                                System.out.println("║  No comments yet.                            ║");
+
+                            } else {
+
+                                for (com.instagram.model.Comment comment : comments) {
+
+                                    System.out.println(
+                                            "║  User " +
+                                                    fitText(
+                                                            String.valueOf(comment.getUserId()),
+                                                            5
+                                                    ) +
+                                                    ": " +
+                                                    fitText(
+                                                            comment.getCommentText(),
+                                                            30
+                                                    ) +
+                                                    "║"
+                                    );
+                                }
+                            }
                         }
                     }
 
                     System.out.println("╚══════════════════════════════════════════════╝");
 
                     break;
-
 
                 case 3:
                     com.instagram.model.Profile currentProfile =
@@ -651,34 +779,47 @@ public class MainController {
                 case 10:
 
                     System.out.print("Enter post ID: ");
-                    int V_post_Id = scanner.nextInt();
+                    int commentPostId = scanner.nextInt();
                     scanner.nextLine();
 
-                    // Check whether the post exists
-                    com.instagram.model.Post postid =
-                            postController.getPostById(V_post_Id);
+                    com.instagram.model.Post selectedPost =
+                            postController.getPostById(commentPostId);
 
-                    if (postid == null) {
+                    if (selectedPost == null) {
                         System.out.println("Post not found.");
                         break;
                     }
 
-                    System.out.print("Enter your comment: ");
-                    String comment_Text = scanner.nextLine();
+                    java.util.List<com.instagram.model.Comment> comments =
+                            commentController.getCommentsByPostId(commentPostId);
 
-                    com.instagram.model.Comment Pcomment =
-                            new com.instagram.model.Comment();
+                    System.out.println();
+                    System.out.println("╔══════════════════════════════════════════════╗");
+                    System.out.println("║                POST COMMENTS                 ║");
+                    System.out.println("╠══════════════════════════════════════════════╣");
 
-                    Pcomment.setUserId(loggedInUser.getUserId());
-                    Pcomment.setPostId(V_post_Id);
-                    Pcomment.setParentCommentId(null);
-                    Pcomment.setCommentText(comment_Text);
+                    if (comments.isEmpty()) {
 
-                    if (commentController.addComment(Pcomment)) {
-                        System.out.println("Comment added successfully!");
+                        System.out.println("║  No comments yet.                            ║");
+
                     } else {
-                        System.out.println("Failed to add comment.");
+
+                        for (com.instagram.model.Comment c : comments) {
+
+                            System.out.println("║                                                ║");
+
+                            System.out.println("║  Comment ID : " +
+                                    fitText(String.valueOf(c.getCommentId()), 29) + "  ║");
+
+                            System.out.println("║  User ID    : " +
+                                    fitText(String.valueOf(c.getUserId()), 29) + "  ║");
+
+                            System.out.println("║  Comment    : " +
+                                    fitText(c.getCommentText(), 29) + "║");
+                        }
                     }
+
+                    System.out.println("╚══════════════════════════════════════════════╝");
 
                     break;
 
@@ -896,7 +1037,7 @@ public class MainController {
                                                         followingUser.getUsername(),
                                                         40
                                                 ) +
-                                                "║"
+                                                "    ║"
                                 );
                             }
                         }
@@ -908,6 +1049,277 @@ public class MainController {
 
                 case 18:
 
+                    System.out.print("Enter username to search: ");
+                    String searchUsername = scanner.nextLine();
+
+                    java.util.List<com.instagram.model.Users> searchResults =
+                            userController.getAllUsers()
+                                    .stream()
+                                    .filter(user ->
+                                            user.getUsername()
+                                                    .toLowerCase()
+                                                    .contains(searchUsername.toLowerCase()))
+                                    .toList();
+
+                    System.out.println();
+                    System.out.println("╔══════════════════════════════════════════════╗");
+                    System.out.println("║                 SEARCH USERS                ║");
+                    System.out.println("╠══════════════════════════════════════════════╣");
+
+                    if (searchResults.isEmpty()) {
+
+                        System.out.println("║  No users found.                             ║");
+                        System.out.println("╚══════════════════════════════════════════════╝");
+                        break;
+                    }
+
+                    for (com.instagram.model.Users user : searchResults) {
+
+                        System.out.println(
+                                "║  ID: " +
+                                        fitText(String.valueOf(user.getUserId()), 5) +
+                                        " Username: " +
+                                        fitText(user.getUsername(), 25) +
+                                        "║"
+                        );
+                    }
+
+                    System.out.println("╚══════════════════════════════════════════════╝");
+
+                    System.out.print("Enter User ID to view profile: ");
+                    int selectedUserId = scanner.nextInt();
+                    scanner.nextLine();
+
+                    com.instagram.model.Users selectedUser =
+                            searchResults.stream()
+                                    .filter(user -> user.getUserId() == selectedUserId)
+                                    .findFirst()
+                                    .orElse(null);
+
+                    if (selectedUser == null) {
+                        System.out.println("Invalid User ID.");
+                        break;
+                    }
+
+                    com.instagram.model.Profile selectedProfile =
+                            profileController.getProfileByUserId(selectedUserId);
+
+                    java.util.List<com.instagram.model.Post> selectedPosts =
+                            postController.getPostsByUserId(selectedUserId);
+
+                    int selectedFollowers =
+                            followController.getFollowerCount(selectedUserId);
+
+                    int selectedFollowing =
+                            followController.getFollowingCount(selectedUserId);
+
+                    System.out.println();
+                    System.out.println("╔══════════════════════════════════════════════╗");
+                    System.out.println("║              USER PROFILE                   ║");
+                    System.out.println("╠══════════════════════════════════════════════╣");
+
+                    System.out.println("║  @" +
+                            fitText(selectedUser.getUsername(), 39) + "║");
+
+                    System.out.println("║                                              ║");
+
+                    System.out.println("║  User ID: " +
+                            fitText(String.valueOf(selectedUser.getUserId()), 32) + "   ║");
+
+                    if (selectedProfile != null) {
+
+                        System.out.println("║  Name: " +
+                                fitText(selectedProfile.getProfileName(), 35) + "     ║");
+
+                        System.out.println("║  Bio: " +
+                                fitText(selectedProfile.getBio(), 36) + "        ║");
+
+                        System.out.println("║  Image: " +
+                                fitText(selectedProfile.getProfileImageUrl(), 33) + "   ║");
+
+                    } else {
+
+                        System.out.println("║  Profile: Not created yet                   ║");
+                    }
+
+                    System.out.println("║                                              ║");
+
+                    System.out.println("║  Followers: " +
+                            fitText(String.valueOf(selectedFollowers), 7) +
+                            " Following: " +
+                            fitText(String.valueOf(selectedFollowing), 7) +
+                            " Posts: " +
+                            fitText(String.valueOf(selectedPosts.size()), 6) + "║");
+
+                    System.out.println("╠══════════════════════════════════════════════╣");
+                    System.out.println("║                    POSTS                     ║");
+                    System.out.println("╠══════════════════════════════════════════════╣");
+
+                    if (selectedPosts.isEmpty()) {
+
+                        System.out.println("║  No posts available.                         ║");
+
+                    } else {
+
+                        for (com.instagram.model.Post u_post : selectedPosts) {
+
+                            int u_likeCount =
+                                    likeController.getLikeCount(u_post.getPostId());
+
+                            java.util.List<com.instagram.model.Comment> u_comments =
+                                    commentController.getCommentsByPostId(
+                                            u_post.getPostId()
+                                    );
+
+                            System.out.println("║                                              ║");
+
+                            System.out.println("║  Post #" +
+                                    fitText(
+                                            String.valueOf(u_post.getPostId()),
+                                            34
+                                    ) + "║");
+
+                            System.out.println("║  Caption: " +
+                                    fitText(u_post.getCaption(), 31) + "║");
+
+                            System.out.println("║  Image: " +
+                                    fitText(u_post.getImageUrl(), 33) + "║");
+
+                            System.out.println("║  Likes: " +
+                                    fitText(String.valueOf(u_likeCount), 34) + "║");
+
+                            System.out.println("║  Comments:                                   ║");
+
+                            if (u_comments.isEmpty()) {
+
+                                System.out.println("║  No comments yet.                            ║");
+
+                            } else {
+
+                                for (com.instagram.model.Comment u_comment : u_comments) {
+
+                                    System.out.println(
+                                            "║  User " +
+                                                    fitText(
+                                                            String.valueOf(u_comment.getUserId()),
+                                                            5
+                                                    ) +
+                                                    ": " +
+                                                    fitText(
+                                                            u_comment.getCommentText(),
+                                                            30
+                                                    ) +
+                                                    "║"
+                                    );
+                                }
+                            }
+                        }
+                    }
+
+                    System.out.println("╚══════════════════════════════════════════════╝");
+
+                    break;
+
+                case 19:
+
+                    java.util.List<com.instagram.model.Post> allPosts =
+                            postController.getAllPosts();
+
+                    System.out.println();
+                    System.out.println("╔══════════════════════════════════════════════╗");
+                    System.out.println("║                 ALL POSTS                   ║");
+                    System.out.println("╠══════════════════════════════════════════════╣");
+
+                    if (allPosts.isEmpty()) {
+
+                        System.out.println("║  No posts available.                         ║");
+
+                    } else {
+
+                        for (com.instagram.model.Post allPost : allPosts) {
+
+                            Users postUser =
+                                    userController.getAllUsers()
+                                            .stream()
+                                            .filter(user ->
+                                                    user.getUserId() == allPost.getUserId())
+                                            .findFirst()
+                                            .orElse(null);
+
+                            int allLikeCount =
+                                    likeController.getLikeCount(
+                                            allPost.getPostId()
+                                    );
+
+                            java.util.List<com.instagram.model.Comment> allComments =
+                                    commentController.getCommentsByPostId(
+                                            allPost.getPostId()
+                                    );
+
+                            System.out.println("║                                              ║");
+
+                            System.out.println("║  User: " +
+                                    fitText(
+                                            postUser != null
+                                                    ? postUser.getUsername()
+                                                    : "Unknown",
+                                            34
+                                    ) + "║");
+
+                            System.out.println("║  Post #" +
+                                    fitText(
+                                            String.valueOf(allPost.getPostId()),
+                                            34
+                                    ) + "║");
+
+                            System.out.println("║  Caption: " +
+                                    fitText(allPost.getCaption(), 31) + "║");
+
+                            System.out.println("║  Image: " +
+                                    fitText(allPost.getImageUrl(), 33) + "║");
+
+                            System.out.println("║  Likes: " +
+                                    fitText(
+                                            String.valueOf(allLikeCount),
+                                            34
+                                    ) + "║");
+
+                            System.out.println("║  Comments:                                   ║");
+
+                            if (allComments.isEmpty()) {
+
+                                System.out.println("║  No comments yet.                            ║");
+
+                            } else {
+
+                                for (com.instagram.model.Comment allComment : allComments) {
+
+                                    System.out.println(
+                                            "║  User " +
+                                                    fitText(
+                                                            String.valueOf(
+                                                                    allComment.getUserId()
+                                                            ),
+                                                            5
+                                                    ) +
+                                                    ": " +
+                                                    fitText(
+                                                            allComment.getCommentText(),
+                                                            30
+                                                    ) +
+                                                    "║"
+                                    );
+                                }
+                            }
+                        }
+                    }
+
+                    System.out.println("╚══════════════════════════════════════════════╝");
+
+                    break;
+
+                case 20:
+
                     System.out.println("Logged out successfully.");
                     return;
 
@@ -918,28 +1330,6 @@ public class MainController {
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     private static String fitText(String text, int length) {
